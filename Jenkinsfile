@@ -21,28 +21,24 @@ pipeline {
         }
          stage('Compile') {
                     steps {
+                    dir('C:/ProgramData/Jenkins/.jenkins/workspace/Practice/src/main/java'){
                         // Go inside src where HelloWorld.java actually exists
                             echo "Compiling Java code..."
-                            bat 'pwd'
+                            bat 'javac Fibonacciseries.java -d ../out'
+                            }
                     }
                 }
 
-//                 stage('Run') {
-//                     steps {
-//                         dir('C:/Myntra/untitled') {
-//                            echo "Running programs..."
-//                            bat 'java -cp out HelloWorld'
-//                            bat 'java -cp out PrimeNumber'
-//                            bat 'java -cp out Fibonacci'
-//                            bat 'java -cp out Evoting'
-//                          }
-//                        }
-//                  }
+                stage('Run') {
+                    steps {
+                      dir('C:/ProgramData/Jenkins/.jenkins/workspace/Practice/src/main') {
+                           echo "Running programs..."
+                           bat 'java -cp out Fibonacciseries'
+                         }
+                       }
+                 }
     }
-
-
-
-    post {
+        post {
         success {
             echo " Build completed successfully!"
         }
